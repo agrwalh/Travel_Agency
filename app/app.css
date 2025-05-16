@@ -320,17 +320,17 @@
     }
   }
   .footer-container {
-    @apply flex justify-between items-center h-full gap-5;
+    @apply flex flex-col sm:flex-row justify-between items-center gap-4 py-4 px-2 w-full;
     a {
-      @apply flex items-center gap-1.5 py-10;
+      @apply flex items-center gap-1.5;
       h1 {
         @apply text-base md:text-2xl font-bold text-dark-100;
       }
     }
     div {
-      @apply flex items-center gap-2 sm:gap-5;
+      @apply flex flex-col sm:flex-row items-center gap-2 sm:gap-5;
       a {
-        @apply text-sm md:text-base font-normal text-gray-100;
+        @apply text-sm md:text-base font-normal text-gray-100 hover:text-primary-100 transition-colors duration-200;
       }
     }
   }
