@@ -1,6 +1,31 @@
-import { Outlet } from 'react-router'
+import { Outlet, redirect } from 'react-router'
 import { SidebarComponent } from '@syncfusion/ej2-react-navigations'
 import { MobileSidebar, Navitems } from "../../../components"
+import { account } from "~/appwrite/client";
+import { getExistingUser, storeUserData } from "~/appwrite/auth";
+
+export async function clientLoader() {
+    try {
+        const user = await account.get();
+        if (!user.$id) return redirect('/sign-in');
+
+        // Get or create user data
+        let userData = await getExistingUser(user.$id);
+        if (!userData) {
+            userData = await storeUserData();
+        }
+
+        // Check if user has admin status
+        if (userData?.status !== 'admin') {
+            return redirect('/');
+        }
+
+        return userData;
+    } catch (e) {
+        console.error('Error in clientLoader:', e);
+        return redirect('/sign-in');
+    }
+}
 
 const AdminLayout = () => {
   return (

@@ -2,6 +2,7 @@ import { Header } from "../../../components";
 import { StatsCard } from "../../../components";
 import { TripCard } from "../../../components";
 import { dashboardStats, user, allTrips } from "~/constants";
+import {redirect} from "react-router"; 
 
 const Dashboard = () => {
   const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } = dashboardStats;
